@@ -1,3 +1,13 @@
+// Rejestracja Service Workera
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/PWA/service-worker.js')
+      .then(reg => console.log("SW registered", reg))
+      .catch(err => console.error("SW registration failed", err));
+  });
+}
+
+// Formularze
 document.getElementById("registerForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const username = document.getElementById("regUsername").value;

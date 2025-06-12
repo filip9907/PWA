@@ -20,3 +20,16 @@ self.addEventListener('fetch', event => {
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
+
+self.addEventListener('push', function(event) {
+  const data = event.data?.json() || {
+    title: 'Nowe powiadomienie',
+    body: 'Masz nową wiadomość!',
+  };
+
+  self.registration.showNotification(data.title, {
+    body: data.body,
+    icon: '/PWA/icons/icon-192.png', // lub inna Twoja ikona
+    badge: '/PWA/icons/icon-192.png'
+  });
+});

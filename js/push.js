@@ -1,3 +1,4 @@
+console.log("✅ push.js załadowany");
 
 document.addEventListener('DOMContentLoaded', async () => {
   if (!('serviceWorker' in navigator)) return;

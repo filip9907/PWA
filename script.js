@@ -17,7 +17,13 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
-  console.log(await res.json());
+  const result = await res.json();
+  console.log(result);
+  if (res.status === 200) {
+    alert("Zarejestrowano! Teraz się zaloguj.");
+  } else {
+    alert(result.message || "Błąd rejestracji");
+  }
 });
 
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
@@ -29,5 +35,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
-  console.log(await res.json());
+  const result = await res.json();
+  console.log(result);
+  if (res.status === 200) {
+    localStorage.setItem('username', username);
+    window.location.href = 'dashboard.html';
+  } else {
+    alert(result.message || "Błąd logowania");
+  }
 });
